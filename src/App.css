@@ -1,0 +1,89 @@
+html, body{
+  height: 100%; 
+  width: 100%; 
+  margin: 0; 
+  
+}
+#root{
+  height: 100%; 
+  width: 100%; 
+}
+.App{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.EditPage{
+  overflow: auto;
+  border-radius: 2px;
+  width: 100vw;
+}
+.Cv{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(122, 133, 153);
+}
+.CvWrapper{
+  height: 100%;
+  width: 70.7%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(122, 133, 153);
+}
+.SideBar{
+  background-color: rgb(30, 75, 30);
+  margin: 48px;
+  margin-right: 0;
+  margin-left: 80dppx;
+  width: 33%;
+}
+.MainContent{
+  background-color: rgb(2, 2, 1);
+  margin: 48px;
+  margin-left: 0;
+  margin-right: 80dppx;
+  width: 77%;
+}
+.Detaljer{
+  display: flex;
+  flex-direction: column;
+  
+}
+.DetaljWrapper{
+  display:flex;
+  justify-content: space-evenly;
+  
+ 
+}
+.DetaljWrapper div{
+  margin: 10px;
+  justify-content: space-evenly;
+  
+}
+.AddButton{
+  font-size: 16dppx;
+  color: rgb(33, 150, 243);
+  font-weight: bold;
+}
+.AddButton:hover{
+  background-color: rgb(242, 245, 250);
+  
+}
+.Links{
+  display: flex;
+  flex-direction:column;
+}
+.Cv p,a {
+  margin: 0;
+  color: white;
+} 
+.About{
+  display: flex;
+  flex-direction: column;
+}
