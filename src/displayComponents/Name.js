@@ -1,7 +1,7 @@
 import React from 'react';
 const Name = (props) =>{
       const style = {
-            fontSize: "80%",
+            fontSize : props.font[0],
             fontWeight : "bold",
             marginBottom: "10%"
             

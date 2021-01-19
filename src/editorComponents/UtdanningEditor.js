@@ -34,8 +34,8 @@ const UtdanningEditor = (props)=>{
       return (<div style = {outerStyle}>
                   <div style = {wrapperStyle}>
                         <div style = {innerStyle}>
-                              <InputComp id = "Skole" handler ={props.handler} ph= {props.ph[0]} cName ={props.cname}></InputComp>
-                              <InputComp id = "Grad" handler ={props.handler} ph= {props.ph[1]} cName ={props.cname}></InputComp>
+                              <InputComp id = "Grad" handler ={props.handler} ph= {props.ph[0]} cName ={props.cname}></InputComp>
+                              <InputComp id = "Skole" handler ={props.handler} ph= {props.ph[1]} cName ={props.cname}></InputComp>
                         </div>
                         <div style = {innerStyle}>
                               <div style = {innerStyle2}>

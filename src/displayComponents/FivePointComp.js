@@ -13,14 +13,14 @@ const FivePointComp = props => {
             dash = " - "
       }
       const style = {
-            fontSize : "80%",
+            fontSize : props.font[3],
             fontWeight: "bold"
       }
       const ageStyle = {
-            fontSize: "80%"
+            fontSize : props.font[5],
       }
       const style2 = {
-            fontSize : "80%",
+            fontSize : props.font[4],
       }
 
       return (

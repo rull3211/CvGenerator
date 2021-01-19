@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import InputComp from './editorComponents/InputComp';
 import Name from './displayComponents/Name';
 import OneLiner from './displayComponents/OneLiner';
-import LinkComp from './displayComponents/LinkComp';
 import AddButton from './editorComponents/AddButton';
 import LinkAdder from './editorComponents/LinkAdder';
 import AboutMeComp from './editorComponents/AboutMeComp'
@@ -14,6 +13,10 @@ import SkillComp from './editorComponents/SkillComp';
 import FivePointComp from './displayComponents/FivePointComp';
 import Referanser from './displayComponents/Referanser'
 import LangComp from './displayComponents/LangComp';
+import jsPDF from 'jspdf';
+import * as htmlToImage from 'html-to-image';
+
+
 class App extends Component{
   state = {
     fName : "",
@@ -36,7 +39,14 @@ class App extends Component{
     utdanning: [],
     erfaringer : [],
     referanser : [],
-    fritider : []
+    fritider : [],
+    editPageOn: true,
+    size: {width: "100%",
+            height: "100%"},
+    size2: {width: "35vw",
+            height: "48vw"},
+    textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"]
+    
   }
 
   inputHandler = event =>{
@@ -66,6 +76,12 @@ class App extends Component{
       this.setState(newObj)}
   }
 
+  stylesetter1 = ()=>{
+    let sizesetter1 = {width: "21cm",
+                        height: "29.7cm"}
+    this.setState({ size2 : sizesetter1})
+  }
+  
   
   render(){
    
@@ -77,36 +93,28 @@ class App extends Component{
         id2 = "nivå"
         ph1 = "Språk"
         ph2 = "Nivå"
-
-        ></LinkAdder>)
-    })
-    let renderLinkAdders = this.state.linkAdders.map((el, index)=>{
-      return (<LinkAdder 
-        handler = {this.indexedInputHandler.bind(this, index)}
-        cname = "linkAdders"
-        id1 = "tag"
-        id2 = "link"
-        ph1 = "Beskrivelse"
-        ph2 = "Link"
+        key = {index}
         ></LinkAdder>)
     })
     let renderSkillAdders = this.state.skillAdders.map((el, index) => {
-      return (<SkillComp handler = {this.indexedInputHandler.bind(this, index)}>
+      return (<SkillComp  key = {index} handler = {this.indexedInputHandler.bind(this, index)}>
       </SkillComp>)
       
     })
     let renderUtdanningEditor = this.state.utdanning.map((el, index) => {
       return(
         <UtdanningEditor
+          key = {index}
           cname = "utdanning"
           handler = {this.indexedInputHandler.bind(this, index)}
-          ph = {["Skole", "Grad", "Start", "Slutt", "By"]}
+          ph = {["Grad", "Skole", "Start", "Slutt", "By"]}
         ></UtdanningEditor>
       )
     })
     let renderErfaringEditor = this.state.erfaringer.map((el, index)=>{
       return(
         <UtdanningEditor
+        key = {index}
         cname = "erfaringer"
         handler = {this.indexedInputHandler.bind(this, index)}
         ph = {["Tittel/jobb", "Ansetter/institusjon", "Start", "Slutt", "By"]}
@@ -118,6 +126,7 @@ class App extends Component{
           <ReferaneComp
             handler = {this.indexedInputHandler.bind(this, index)}
             cname = "referanser"
+            key = {index}
           >
           </ReferaneComp>
       )
@@ -128,61 +137,66 @@ class App extends Component{
           cname = "fritider"
           handler = {this.indexedInputHandler.bind(this, index)}
           ph = {["Funksjonstittel/handling", "Ansetter/institusjon", "Start", "Slutt", "By"]}
+          key = {index}
         ></UtdanningEditor>
       )
     })
     let renderSkills = this.state.skillAdders.map((el, index) => {
-      return <OneLiner  info = {el.skill}></OneLiner>
+      return <OneLiner key = {index}  font = {this.state.textSize} info = {el.skill }></OneLiner>
     })
     let renderLanguage = this.state.languageAdders.map((el, index) => {
-      return (<LangComp Språk = {el.språk} Nivå = {el.nivå}></LangComp>)
-    })
-    let renderLinks = this.state.linkAdders.map((el, index) =>{
-      return <LinkComp id = {index} link = {el.link} text = {el.tag}></LinkComp>
+      return (<LangComp key = {index} font = {this.state.textSize} Språk = {el.språk} Nivå = {el.nivå}></LangComp>)
     })
     let renderUtdanning = this.state.utdanning.map((el, index)=> {
       return(
         <FivePointComp
           info = {[el.Grad, el.Skole, el.By, el.Start, el.Slutt, el.Beskrivelse]}
+          font = {this.state.textSize}
+          key = {index}
         ></FivePointComp>
         
       )
     })
-    let renderErfaring = this.state.erfaringer.map((el,index)=> {
+    let renderErfaring = this.state.erfaringer.map((el, index)=> {
       return (
         <FivePointComp
           info = {[el.Grad, el.Skole, el.By, el.Start, el.Slutt, el.Beskrivelse]}
+          font = {this.state.textSize}
+          key = {index}
         ></FivePointComp>
       )
     })
-    let renderFritider = this.state.fritider.map((el,index)=> {
+    let renderFritider = this.state.fritider.map((el, index)=> {
       return (
         <FivePointComp
           info = {[el.Grad, el.Skole, el.By, el.Start, el.Slutt, el.Beskrivelse]}
+          font = {this.state.textSize}
+          key = {index}
         ></FivePointComp>
       )
     })
     let renderReferanse = this.state.referanser.map((el, index) => {
       return(
-          <Referanser info = {[el.Navn, el.Org,el.Tlf, el.Email ]}> </Referanser>
+          <Referanser key = {index} font = {this.state.textSize} info = {[el.Navn, el.Org,el.Tlf, el.Email ]}> </Referanser>
       )
     })
+   
+    let Detaljer = <div style= {{fontSize: "12"}}><h1 style = {{fontSize : this.state.textSize[2]}} id = "Detaljer">{this.state.Detaljer} </h1></div>
+    let Ferdigheter = <div style= {{fontSize: "12"}}><h1 style = {{fontSize : this.state.textSize[2]}} id = "Ferdigheter">{this.state.Ferdigheter} </h1></div>
+    let Språk = <div style= {{fontSize: "12"}}><h1 style = {{fontSize : this.state.textSize[2]}} id = "Språk">{this.state.Språk} </h1></div>
+    let Utdanning = <div style= {{fontSize: "14"}}><h1 style = {{fontSize : this.state.textSize[1]}} id = "Utdanning">{this.state.Utdanning} </h1></div>
+    let Erfaring = <div style= {{fontSize: "14"}}><h1 style = {{fontSize : this.state.textSize[1]}} id = "Erfaring">{this.state.Erfaring} </h1></div>
+    let Referanse = <div style= {{fontSize: "14"}}><h1 style = {{fontSize : this.state.textSize[1]}} id = "Referanse">{this.state.Referanse} </h1></div>
+    let Fritiden = <div style= {{fontSize: "14"}}><h1 style = {{fontSize : this.state.textSize[1]}} id = "Fritiden">{this.state.Fritiden} </h1></div>
     
-    let Detaljer = <h1 id = "Detaljer">{this.state.Detaljer} </h1>
-    let Linker = <h1 id = "Linker">{this.state.Linker} </h1>
-    let Ferdigheter = <h1 id = "Ferdigheter">{this.state.Ferdigheter} </h1>
-    let Språk = <h1 id = "Språk">{this.state.Språk} </h1>
-    let Utdanning = <h1 id = "Utdanning">{this.state.Utdanning} </h1>
-    let Erfaring = <h1 id = "Erfaring">{this.state.Erfaring} </h1>
-    let Referanse = <h1 id = "Referanse">{this.state.Referanse} </h1>
-    let Fritiden = <h1 id = "Fritiden">{this.state.Fritiden} </h1>
-     
-
-    return (
-    <div className="App">
+    
+    
+    let editPage = (
       <div className="EditPage">
       <div className = "EditPageWrapper">
+      
         <div className = "Detaljer">
+        
             <InputComp sT = "1" id = "Detaljer" handler = {this.inputHandler} ph = "Detaljer (kan endres)"></InputComp>
             <div className = "DetaljWrapper">
               <div className ="LeftSide">
@@ -207,11 +221,6 @@ class App extends Component{
             </div>
             <AboutMeComp handler = {this.inputHandler}></AboutMeComp>
           </div>
-          <ul>
-            <InputComp sT = "1" id = "Linker" handler = {this.inputHandler} ph = "Linker (kan endres)"></InputComp>
-            {renderLinkAdders}
-            <AddButton n = "linkAdders" text= "+ Legg til link" handler = {this.addHandler}></AddButton>
-          </ul>
           <ul className = "Skill">
             <InputComp sT = "1" id = "Ferdigheter" handler = {this.inputHandler} ph = "Ferdigheter (kan endres)"></InputComp>
             <div>{renderSkillAdders} </div>
@@ -245,62 +254,78 @@ class App extends Component{
       </div>
         
       </div>
+    )
+                          
+    
+  let stylesetter2 = ()=>{
+    let sizesetter2 = {width: "35vw",
+                        height: "48vw"}
+    let sizesetter3 = {width: "100%",
+                          height: "100%"}
+    this.setState({size1: sizesetter3, size2 : sizesetter2, textSize: ["0.9vw", "0.75vw", "0.7vw", "0.65vw", "0.5vW", "0.4vw"]})
+  }
+    
 
-      <div className = "Cv">
-        <div className = "CvWrapper">
+
+    const htmlToPdf = () => {
+     this.setState({textSize: ["100%","100%","100%","100%","100%","100%"]})
+      let domElement = document.getElementById('capture');
+      console.log(domElement)
+        htmlToImage.toJpeg(domElement)
+          .then(function (dataUrl) {
+          const pdf = new jsPDF();
+          pdf.addImage(dataUrl, 'pdf', 0, 0);
+          pdf.save("download.pdf");
+          stylesetter2()
+        })
+    };
+
+    
+    return (
+    <div className="App">
+      {editPage}
+      <button onMouseDown = {this.stylesetter1} className = "DownloadButton"  onMouseUp = {htmlToPdf}> Export pdf</button>
+      <div className = "Cv" style = {this.state.size1} > 
+        <div className = "CvWrapper" id = "capture" style = {this.state.size2}>
           <div className = "SideBarWrapper">
             <div className = "SideBar">
-              <Name fName = {this.state.fName} lName = {this.state.lName}></Name>
-              
+              <Name font = {this.state.textSize} fName = {this.state.fName} lName = {this.state.lName}></Name>
               <div className =" SectionSplitter1">
               {Detaljer}
-              <OneLiner info = {this.state.tlf}></OneLiner>
-              <OneLiner info = {this.state.email}></OneLiner>
+              <OneLiner font = {this.state.textSize} info = {this.state.tlf}></OneLiner>
+              <OneLiner font = {this.state.textSize} info = {this.state.email}></OneLiner>
               </div>
-              
-              <div className =" SectionSplitter1">
-              {Linker}
-              {renderLinks}
-              </div>
-             
               <div className =" SectionSplitter1">
               {Ferdigheter}
               {renderSkills}
               </div>
-              
               <div className =" SectionSplitter1">
               {Språk}
               {renderLanguage}
               </div>
-              
             </div>
           </div>
           <div className = "MainContentWrapper">
             <div className= "MainContent">
             <div className = "SectionSplitter">
-              <DisplayAboutMe header = {this.state.aboutmeheader} content = {this.state.aboutMe}></DisplayAboutMe>
+              <DisplayAboutMe font = {this.state.textSize} header = {this.state.aboutmeheader} content = {this.state.aboutMe}></DisplayAboutMe>
             </div>
               <div className = "SectionSplitter">
                 {Utdanning}
                 {renderUtdanning}
               </div>
-              
               <div className = "SectionSplitter">
                 {Erfaring}
                 {renderErfaring}
               </div>
-              
               <div className = "SectionSplitter">
                 {Referanse}
                 {renderReferanse}
               </div>
-              
               <div className = "SectionSplitter">
                 {Fritiden}
                 {renderFritider}
               </div>
-              
-              
             </div>
           </div>
         </div>
