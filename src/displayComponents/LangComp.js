@@ -10,7 +10,9 @@ const LangComp = props =>{
       }
       return(
             <div style = {{fontSize: "9pt"}}>
-                  <p style = {style}>{props.Språk}{dash}{props.Nivå}</p>
+                  <p style = {style}>
+                        {props.Språk}{dash}{props.Nivå}
+                  </p>
             </div>
       )
 }

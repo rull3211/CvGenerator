@@ -15,12 +15,32 @@ const ReferaneComp = (props)=>{
       return (
             <div style = {style}>
                   <div style = {divStyle}>
-                        <InputComp id = "Navn" handler = {props.handler} cName = {props.cname} ph = "Referentens Navn"></InputComp>
-                        <InputComp id = "Org" handler = {props.handler} cName = {props.cname} ph = "Organisasjon/stilling"></InputComp>
+                        <InputComp 
+                              id = "Navn" 
+                              handler = {props.handler} 
+                              cName = {props.cname} 
+                              ph = "Referentens Navn">
+                        </InputComp>
+                        <InputComp 
+                              id = "Org" 
+                              handler = {props.handler} 
+                              cName = {props.cname} 
+                              ph = "Organisasjon/stilling">
+                        </InputComp>
                   </div>
                   <div style = {divStyle}>
-                        <InputComp id = "Tlf" handler = {props.handler} cName = {props.cname} ph ="Telefonnummer"></InputComp>
-                        <InputComp id = "Email" handler = {props.handler} cName = {props.cname} ph ="Email"></InputComp>
+                        <InputComp 
+                              id = "Tlf" 
+                              handler = {props.handler} 
+                              cName = {props.cname} 
+                              ph ="Telefonnummer">
+                        </InputComp>
+                        <InputComp 
+                              id = "Email" 
+                              handler = {props.handler} 
+                              cName = {props.cname} 
+                              ph ="Email">
+                        </InputComp>
                   </div>
             </div>
       )

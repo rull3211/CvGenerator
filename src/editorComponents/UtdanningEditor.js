@@ -34,20 +34,50 @@ const UtdanningEditor = (props)=>{
       return (<div style = {outerStyle}>
                   <div style = {wrapperStyle}>
                         <div style = {innerStyle}>
-                              <InputComp id = "Grad" handler ={props.handler} ph= {props.ph[0]} cName ={props.cname}></InputComp>
-                              <InputComp id = "Skole" handler ={props.handler} ph= {props.ph[1]} cName ={props.cname}></InputComp>
+                              <InputComp 
+                                    id = "Grad" 
+                                    handler ={props.handler} 
+                                    ph= {props.ph[0]} 
+                                    cName ={props.cname}>
+                              </InputComp>
+                              <InputComp 
+                                    id = "Skole" 
+                                    handler ={props.handler} 
+                                    ph= {props.ph[1]} 
+                                    cName ={props.cname}>
+                              </InputComp>
                         </div>
                         <div style = {innerStyle}>
                               <div style = {innerStyle2}>
-                                    <InputComp id = "Start" handler ={props.handler} ph= {props.ph[2]} cName ={props.cname} ></InputComp>
-                                    <InputComp id = "Slutt" handler ={props.handler} ph= {props.ph[3]} cName ={props.cname}></InputComp>
+                                    <InputComp 
+                                          id = "Start" 
+                                          handler ={props.handler} 
+                                          ph= {props.ph[2]} 
+                                          cName ={props.cname} >
+                                    </InputComp>
+                                    <InputComp 
+                                          id = "Slutt" 
+                                          handler ={props.handler} 
+                                          ph= {props.ph[3]} 
+                                          cName ={props.cname}>
+                                    </InputComp>
                               </div>
-                              <InputComp handler = {props.handler} id = "By" ph= {props.ph[4]}cName ={props.cname}></InputComp>
+                              <InputComp 
+                                    handler = {props.handler} 
+                                    id = "By" 
+                                    ph= {props.ph[4]}
+                                    cName ={props.cname}>
+                              </InputComp>
 
                         </div>
                         <div> 
                               <p>Beskrivelse</p>
-                              <textarea style = {textStyle} id = "Beskrivelse" onChange ={props.handler} className ={props.cname}></textarea>
+                              <textarea 
+                                    style = {textStyle} 
+                                    id = "Beskrivelse" 
+                                    onChange ={props.handler} 
+                                    className ={props.cname}>
+                              </textarea>
                         </div>
                   </div>
             </div>)

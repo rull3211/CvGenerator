@@ -18,9 +18,14 @@ const AboutMeComp = (props)=> {
       }
       return(
             <div className ="About">
-                  <input style = {style} id = "aboutmeheader" onChange = {props.handler} placeholder = "Om deg - endre"></input>
-                  <textarea style = {textStyle} id = "aboutMe" onChange = {props.handler}>
-
+                  <input style = {style} 
+                        id = "aboutmeheader" 
+                        onChange = {props.handler} 
+                        placeholder = "Om deg - endre">
+                  </input>
+                  <textarea style = {textStyle} 
+                        id = "aboutMe" 
+                        onChange = {props.handler}>
                   </textarea>
             </div>
       )

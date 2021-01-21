@@ -12,9 +12,10 @@ const SkillComp = props => {
             <div style = {style}>
                   <div style = {style2}>
                         <InputComp 
-                        id = "skill" 
-                        cName = "skillAdders" 
-                        handler = {props.handler}></InputComp>
+                              id = "skill" 
+                              cName = "skillAdders" 
+                              handler = {props.handler}>
+                        </InputComp>
                   </div>
                  
             </div>

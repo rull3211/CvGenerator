@@ -14,8 +14,18 @@ const LinkAdder = (props) => {
       return(
             <div style = {wrapper}>
                   <div style = {style}>
-                        <InputComp  handler = {props.handler} id = {props.id1} cName = {props.cname} ph = {props.ph1} ></InputComp> 
-                        <InputComp  handler = {props.handler} id = {props.id2} cName = {props.cname} ph = {props.ph2}></InputComp>
+                        <InputComp  
+                              handler = {props.handler} 
+                              id = {props.id1} 
+                              cName = {props.cname} 
+                              ph = {props.ph1} >
+                        </InputComp> 
+                        <InputComp  
+                              handler = {props.handler} 
+                              id = {props.id2} 
+                              cName = {props.cname} 
+                              ph = {props.ph2}>
+                        </InputComp>
                   </div>
             </div>
             

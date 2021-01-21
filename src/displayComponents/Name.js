@@ -6,7 +6,11 @@ const Name = (props) =>{
             marginBottom: "10%"
             
       }
-      return <div style = {{fontSize: "16pt"}}> <p style = {style}> {props.fName} {props.lName} </p></div>
+      return (
+            <div style = {{fontSize: "16pt"}}> 
+                  <p style = {style}> {props.fName} {props.lName} 
+                  </p>
+            </div>)
       
 }
 export default Name

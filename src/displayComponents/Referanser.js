@@ -23,9 +23,16 @@ const Referanser = (props)=>{
       }
       return(
             <div style = {style1}>
-                  <div style = {{fontSize: "11pt"}}><h2 style = {style3}>{props.info[0]}{comma}{props.info[1]} </h2></div>
-                  <div style = {{fontSize: "9pt"}}><p style = {style2}>{props.info[2]}{dash}{props.info[3]} </p></div>
-                  
+                  <div style = {{fontSize: "11pt"}}>
+                        <h2 style = {style3}>
+                              {props.info[0]}{comma}{props.info[1]} 
+                        </h2>
+                  </div>
+                  <div style = {{fontSize: "9pt"}}>
+                        <p style = {style2}>
+                              {props.info[2]}{dash}{props.info[3]} 
+                        </p>
+                  </div>    
             </div>
       )
 }

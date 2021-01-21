@@ -20,7 +20,13 @@ const inputComp = (props)=>{
       }
 
       return(
-            <input style = {style} onChange = {props.handler} id = {props.id} className = {props.cName} value = {props.val} placeholder = {props.ph}></input>
+            <input style = {style} 
+                  onChange = {props.handler} 
+                  id = {props.id} 
+                  className = {props.cName} 
+                  value = {props.val} 
+                  placeholder = {props.ph}>
+            </input>
       )
 }
 

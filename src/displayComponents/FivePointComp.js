@@ -25,9 +25,21 @@ const FivePointComp = props => {
 
       return (
             <div>
-                  <div style= {{fontSize:"11pt"}}><h2 style = {style}> {props.info[0]}{comma}{props.info[1]}{comma2}{props.info[2]}  </h2></div>
-                  <div style= {{fontSize:"7pt"}}><p style = {ageStyle}>{props.info[3]}{dash}{props.info[4]} </p></div>
-                  <div style= {{fontSize:"9pt"}}><p style = {style2}>{props.info[5]} </p></div>
+                  <div style= {{fontSize:"11pt"}}>
+                        <h2 style = {style}> 
+                              {props.info[0]}{comma}{props.info[1]}{comma2}{props.info[2]}  
+                        </h2>
+                  </div>
+                  <div style= {{fontSize:"7pt"}}>
+                        <p style = {ageStyle}>
+                              {props.info[3]}{dash}{props.info[4]} 
+                        </p>
+                  </div>
+                  <div style= {{fontSize:"9pt"}}>
+                        <p style = {style2}>
+                              {props.info[5]} 
+                        </p>
+                  </div>
                   
                   
                   
